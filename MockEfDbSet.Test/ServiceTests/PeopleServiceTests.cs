@@ -8,6 +8,7 @@ using System.Linq;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using MockEfDbSet.Test.TestUtils;
+using System.Threading.Tasks;
 
 namespace MockEfDbSet.Test.ServiceTests
 {
@@ -75,7 +76,7 @@ namespace MockEfDbSet.Test.ServiceTests
         }
 
         [Test]
-        public async void GetAllPeopleAsync_RetrievesAllPersonRecords()
+        public async Task GetAllPeopleAsync_RetrievesAllPersonRecords()
         {
             // Mocking DbSet for asynchronous read operations is much more tricky
             // This is where we need the classes defined in the "Test.Infrastructure"
@@ -119,7 +120,7 @@ namespace MockEfDbSet.Test.ServiceTests
         }
 
         [Test]
-        public async void GetPersonAsync_ReturnsThePersonWithTheGivenId()
+        public async Task GetPersonAsync_ReturnsThePersonWithTheGivenId()
         {
             // The above setup for one single test looks too much
             // let's encapsulate all that code inside the 
@@ -206,7 +207,7 @@ namespace MockEfDbSet.Test.ServiceTests
         }
 
         [Test]
-        public async void AddOrUpdatePerson_CallsAddOrUpdateFromDbSet()
+        public async Task AddOrUpdatePerson_CallsAddOrUpdateFromDbSet()
         {
             // Arrange
             var mockSet = NSubstituteUtils.CreateMockDbSet<Person>();
@@ -220,11 +221,11 @@ namespace MockEfDbSet.Test.ServiceTests
             // Assert
             // verify that DbSet.AddOrUpdate has been called once
             mockSet.Received(1).AddOrUpdate(Arg.Any<Person>());
-            mockContext.Received(1).SaveChangesAsync();
+            await mockContext.Received(1).SaveChangesAsync();
         }
 
         [Test]
-        public async void GetPersonNoTrackingAsync_ReturnsThePersonWithTheGivenId()
+        public async Task GetPersonNoTrackingAsync_ReturnsThePersonWithTheGivenId()
         {
             // Arrange
 

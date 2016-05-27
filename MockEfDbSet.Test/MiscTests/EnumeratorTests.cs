@@ -5,6 +5,7 @@ using MockEfDbSet.Test.Dal;
 using MockEfDbSet.Test.TestUtils;
 using NSubstitute;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace MockEfDbSet.Test.MiscTests
 {
@@ -33,7 +34,7 @@ namespace MockEfDbSet.Test.MiscTests
         }
 
         [Test]
-        public async void MockDbSetCanBeEnumeratedMoreThanOnce_Asynchronously()
+        public async Task MockDbSetCanBeEnumeratedMoreThanOnce_Asynchronously()
         {
             var data = new List<Person>
             {
