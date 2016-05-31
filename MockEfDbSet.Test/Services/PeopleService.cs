@@ -14,7 +14,7 @@ namespace MockEfDbSet.Test.Services
         public PeopleService(IPeopleDbContext peopleDbContext)
         {
             if (peopleDbContext == null) 
-                throw new ArgumentNullException("peopleDbContext");
+                throw new ArgumentNullException(nameof(peopleDbContext));
             _peopleDbContext = peopleDbContext;
         }
 
